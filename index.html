@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        Q1:-
+    </h3>
+    <pre>
+        "    function counter(){
+            var counter = 0;
+        
+            function IncreaseCounter() {
+                return counter += 1;
+            };
+        
+            return IncreaseCounter;
+        }
+        
+        var counter = counter();
+        alert(counter());
+        alert(counter());
+        alert(counter());
+        alert(counter());"
+    </pre>
+    <p>
+        In this case, the counter function returns an inner function IncreaseCounter, which has access to the counter variable in the outer scope.
+    </p>
+    <p>
+        So, when you call counter() the first time, it returns the inner function IncreaseCounter with a closure that has a counter variable set to 0. The first call to counter() returns 1, the second call returns 2, and so on.
+    </p>
+    <p>
+        So, when you call counter() the first time, it returns the inner function IncreaseCounter with a closure that has a counter variable set to 0. The first call to counter() returns 1, the second call returns 2, and so on, incrementing the counter variable in its closure with each call.
+    </p>
+    <hr>
+    <h3>
+        Q2:-
+    </h3>
+    <pre>
+        "let count = 0;
+        (function () {
+          if (count === 0) {
+            let count = 1;
+            console.log(count); // What is logged?
+          }
+          console.log(count); // What is logged?
+        })();"
+    </pre>
+    <p>
+        variable count using let keyword and initializes its value to 1. This new variable has block scope, so it only exists within the block of the if statement. Therefore, the console.log statement within the if block logs 1.
+    </p>
+    <p>
+        The console.log statement outside of the if block logs 0 because it is referencing the count variable defined outside the function (which has not been updated by the let statement).
+    </p>
+    <p><b>So, the output will be: 1 and 0.</b></p>
+    <hr>
+   
+    
+    <h3>
+        Q3:-
+    </h3>
+    <pre>
+        "for (var i = 0; i < 3; i++) {
+            setTimeout(function log() {
+              console.log(i); // What is logged?
+            }, 1000);
+          }"
+    </pre>
+    <p>
+        The code will log the number 3 three times to the console. This is because the for loop initializes the variable i to 0 and increments it by 1 each time through the loop until it reaches a value of 3. During each iteration of the loop, a function is defined and passed as an argument to setTimeout(). This means that each setTimeout call will create a closure that captures the current value of i. However, the setTimeout() function schedules the execution of its callback function after a delay of 1000 milliseconds, meaning that the loop will finish executing before the first timer has a chance to print its value. Therefore, when the three timer functions finally execute, the value of i will be 3 in each case, since that is the value of i when the loop exits. So the code will log 3 to the console three times.
+    </p>
+    <hr>
+    <h3>
+        Q4:-
+        Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.
+    </h3>
+    <pre>
+        function area(length){
+            function calculate(breadth){
+                console.log('Area of Rectangel:-',length*breadth)
+            }
+            calculate(10);
+        }
+        area(20);
+    </pre>
+    <p>
+        <b>Output:-Area of Rectangel:- 200</b>
+    </p>
+    <h3>
+      Q5:-  Take a variable in outer function and create an inner function to increase the counter every time it is called
+    </h3>
+    <pre>
+        function createCounter() {
+            var counter = 0;
+            function increment() {
+              counter++;
+              console.log(counter);
+            }
+            return increment;
+          }
+          
+          var myCounter = createCounter();
+          myCounter(); // logs 1
+          myCounter(); // logs 2
+          myCounter(); // logs 3
+    </pre>
+    <p>
+
+    </p>
+    <hr>
+    <h3>
+        Q6:-
+    </h3>
+    <pre>
+        "Print Output
+
+        var a = 12;
+        (function () {
+          consol.log(a);
+        })();"
+    </pre>
+    <p>
+        The code will display an alert box with the value 12. This is because the variable a is defined in the outer function and is accessible by the inner function 
+    </p>
+    <hr>
+    <h3>
+        Q7:-
+    </h3>
+    <pre>
+        var x = (function () {
+            var a = 12;
+            return function () {
+              console.log(a);
+            };
+          })();
+          x();
+    </pre>
+    <p>
+        The code will log the value 12 to the console. This is because the code defines a function that returns another function, which logs the value of a variable a that is defined in the outer function. The variable a is initialized with the value 12
+    </p>
+    <hr>
+    <h3>
+        Q8:-
+    </h3>
+    <pre>
+        var globalVar = "xyz";
+
+        (function outerFunc(outerArg) {
+            var outerVar = 'a';
+            
+            (function innerFunc(innerArg) {
+            var innerVar = 'b';
+            
+            console.log(
+                "outerArg = " + outerArg + "\n" +
+                "innerArg = " + innerArg + "\n" +
+                "outerVar = " + outerVar + "\n" +
+                ""innerVar = " + innerVar + "\n" +
+                "globalVar = " + globalVar);
+            
+            })(456);
+        })(123);
+
+        output:-
+        
+        outerArg = 123
+        innerArg = 456
+        outerVar = a
+        innerVar = b
+        globalVar = xyz
+    </pre>
+    <p>
+        The variable globalVar is defined in the global scope and is accessible by both the outer and inner functions. The outer function takes an argument outerArg and defines a local variable outerVar. The inner function takes an argument innerArg and defines a local variable innerVar. When the inner function is invoked, it logs the values of all of these variables to the console.
+    </p>
+    <hr>
+    <script src="./script.js"></script>
+
+</body>
+</html>
